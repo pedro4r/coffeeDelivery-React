@@ -2,11 +2,8 @@ import { ShoppingCart, Timer } from "@phosphor-icons/react";
 import { Benefits, BenefitsList, CoffeePacking, FastDelivery, FreshCoffee, ImgContainer, Intro, Main, SecurityPurchase } from "./styles";
 import coffeeIntro from '../../assets/coffee-intro.png';
 import { CoffeeList } from "./components/CoffeeList";
-import { useContext } from "react";
-import { CoffeeContext } from "../../context/CoffeeContext";
 
 export function Home() {
-
 
     return (
         <Main>

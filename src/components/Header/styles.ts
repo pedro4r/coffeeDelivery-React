@@ -41,3 +41,30 @@ export const HeaderLocation = styled.div`
     background: ${(props) => props.theme['purple-100']};
     border-radius: 6px;
 `
+
+export const CartContainer = styled.div`
+    position: relative;
+`
+
+
+export const CartCounter = styled.div`
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    width: 1.25rem;
+    height: 1.25rem;
+
+    color: ${(props) => props.theme['white']};
+    background: ${(props) => props.theme['yellow-300']};
+    border-radius: 50%;
+
+    span {
+        font-size: 0.6rem;
+    }
+`

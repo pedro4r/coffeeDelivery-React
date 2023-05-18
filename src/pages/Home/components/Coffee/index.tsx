@@ -43,7 +43,7 @@ export function Coffee({ id, name, coffeeTag, description, price, image }: Coffe
                 </CoffeeTag>
             ))}
         </CoffeeTagContainer>
-        <strong>{name}{id}</strong>
+        <strong>{name}</strong>
         <span>{description}</span>
         <Footer>
             <Price>
