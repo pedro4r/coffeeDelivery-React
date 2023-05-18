@@ -10,7 +10,7 @@ export function Header() {
             <nav>
                 <HeaderLocation>
                     <MapPin size={32} weight="fill" />
-                    <span>Porto Alegre, RS</span>
+                    <span>Orlando, FL</span>
                 </HeaderLocation>
 
                 <NavLink to="/checkout" title="Checkout">

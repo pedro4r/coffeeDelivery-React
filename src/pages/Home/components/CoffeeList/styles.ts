@@ -14,7 +14,7 @@ export const ListContainer = styled.div`
 export const ListGrid = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, 16rem);
-    grid-gap: 1rem;
+    grid-gap: 2rem;
 `;
 
 

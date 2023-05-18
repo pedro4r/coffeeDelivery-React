@@ -1,0 +1,43 @@
+[
+    {
+        "id": 1,
+        "name": "Traditional espresso",
+        "coffeeTag": [
+            "Traditional"
+        ],
+        "description": "The traditional coffee made with hot water and ground beans.",
+        "price": 5.99,
+        "image": "../../../../assets/traditional-espresso.png"
+    },
+    {
+        "id": 2,
+        "name": "Americano espresso",
+        "coffeeTag": [
+            "Traditional"
+        ],
+        "description": "Diluted espresso, less intense than traditional.",
+        "price": 4.99,
+        "image": "../../../../assets/americano-espresso.png"
+    },
+    {
+        "id": 3,
+        "name": "Creamy Espresso",
+        "coffeeTag": [
+            "Traditional"
+        ],
+        "description": "Traditional espresso with creamy foam.",
+        "price": 7.99,
+        "image": "../../../../assets/creamy-espresso.png"
+    },
+    {
+        "id": 4,
+        "name": "Iced Espresso",
+        "coffeeTag": [
+            "Traditional",
+            "Iced"
+        ],
+        "description": "Drink made with espresso and ice cubes.",
+        "price": 6.99,
+        "image": "../../../../assets/iced-espresso.png"
+    }
+]
