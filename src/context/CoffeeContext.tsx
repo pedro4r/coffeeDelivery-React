@@ -3,6 +3,7 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 interface CoffeeContextType {
     coffeeListArray: Coffee[];
     cartAdd: (cartObject: Cart) => void;
+    insertAddress: (Address: Address) => void;
     cartAmount: number;
 }
 
@@ -13,6 +14,14 @@ interface Coffee {
     description: string;
     price: number;
     image: string;
+}
+
+interface Address {
+    zipcode: string;
+    address: string;
+    complement: string;
+    city: string;
+    state: string;
 }
 
 interface Cart {
@@ -30,6 +39,11 @@ export function CoffeeContextProvider({ children }: CoffeeContextProviderProps) 
 
     const [cart, setCart] = useState<Cart[]>([]);
     const [cartAmount, setCartAmount] = useState(0);
+    const [address, setAddress] = useState({});
+
+    function insertAddress(addressObject: Address) {
+        setAddress(addressObject);
+    }
 
     function cartAdd(cartObject: Cart) {
 
@@ -178,6 +192,7 @@ export function CoffeeContextProvider({ children }: CoffeeContextProviderProps) 
                 coffeeListArray,
                 cartAdd,
                 cartAmount,
+                insertAddress
             }}>
             {children}
         </CoffeeContext.Provider>
