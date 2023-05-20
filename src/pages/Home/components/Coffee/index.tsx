@@ -11,10 +11,10 @@ interface CoffeeProps {
     price: number;
     image: string;
 }
+
 export function Coffee({ id, name, coffeeTag, description, price, image }: CoffeeProps) {
 
     const { cartAdd } = useContext(CoffeeContext)
-
     const [coffeeQuantity, setcoffeeQuantity] = useState(1);
 
     const handleMoreCoffee = () => {

@@ -1,5 +1,5 @@
-import { MapPinLine } from "@phosphor-icons/react";
-import { AddressContainer, CartDetailsContainer, CheckoutContainer, ConfirmeOrderButton, DataContainer, FormContainer, OrderDetails, PaymentContainer, SelectedCoffeesContainer, TitleContainer } from "./styles";
+import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "@phosphor-icons/react";
+import { AddressContainer, CartDetailsContainer, CheckoutContainer, ConfirmeOrderButton, DataContainer, FormContainer, OptionsContainer, OrderDetails, PaymentButton, PaymentContainer, SelectedCoffeesContainer, TitleContainerPayment, TitleContainerShipping } from "./styles";
 import { FormProvider, useForm } from "react-hook-form";
 import * as zod from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,7 +19,8 @@ type NewOrderFormData = zod.infer<typeof newOrderFormValidationSchema>
 
 export function Checkout() {
 
-    const { insertAddress } = useContext(CoffeeContext)
+    const { insertAddress, paymentOption, payment } = useContext(CoffeeContext)
+    // const [payment, setPayment] = useState('credit card');
 
     const newOrderForm = useForm<NewOrderFormData>({
         resolver: zodResolver(newOrderFormValidationSchema),
@@ -41,29 +42,63 @@ export function Checkout() {
         insertAddress(data);
     }
 
+    const handlePaymentOption = (option: string) => {
+        paymentOption(option);
+    };
+
     return (
         <CheckoutContainer>
-            <DataContainer>
-                <strong>Complete your order</strong>
-                <AddressContainer>
-                    <TitleContainer>
-                        <MapPinLine size={32} />
-                        <div>
-                            <span>Shipping Address</span>
-                            <p>Provide the address where you'd like to receive your order.</p>
-                        </div>
-                    </TitleContainer>
-                    <FormContainer>
-                        <form onSubmit={handleSubmit(handleCreateNewOrder)} action="">
+            <form onSubmit={handleSubmit(handleCreateNewOrder)} action="">
+                <DataContainer>
+                    <strong>Complete your order</strong>
+                    <AddressContainer>
+                        <TitleContainerShipping>
+                            <MapPinLine size={32} />
+                            <div>
+                                <span>Shipping Address</span>
+                                <p>Provide the address where you'd like to receive your order</p>
+                            </div>
+                        </TitleContainerShipping>
+                        <FormContainer>
+
                             <FormProvider {...newOrderForm}>
                                 <NewOrderForm />
                             </FormProvider>
                             <button disabled={isSubmitDisabled} type="submit">Confirme</button>
-                        </form>
-                    </FormContainer>
-                </AddressContainer>
-                <PaymentContainer></PaymentContainer>
-            </DataContainer>
+
+                        </FormContainer>
+                    </AddressContainer>
+                    <PaymentContainer>
+                        <TitleContainerPayment>
+                            <CurrencyDollar size={32} />
+                            <div>
+                                <span>Payment</span>
+                                <p>Payment is made upon delivery. Choose the payment method you prefer</p>
+                            </div>
+                        </TitleContainerPayment>
+                        <OptionsContainer>
+                            <PaymentButton
+                                selected={payment === 'credit card'}
+                                onClick={() => handlePaymentOption('credit card')}>
+                                <CreditCard size={16} />
+                                <span>CREDIT CARD</span>
+                            </PaymentButton>
+                            <PaymentButton
+                                selected={payment === 'debit card'}
+                                onClick={() => handlePaymentOption('debit card')}>
+                                <Bank size={16} />
+                                <span>DEBIT CARD</span>
+                            </PaymentButton>
+                            <PaymentButton
+                                selected={payment === 'cash'}
+                                onClick={() => handlePaymentOption('cash')}>
+                                <Money size={16} />
+                                <span>CASH</span>
+                            </PaymentButton>
+                        </OptionsContainer>
+                    </PaymentContainer>
+                </DataContainer>
+            </form>
             <CartDetailsContainer>
                 <strong>Selected Coffees</strong>
                 <SelectedCoffeesContainer>
