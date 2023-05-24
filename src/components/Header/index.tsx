@@ -6,10 +6,12 @@ import { useContext } from "react";
 import { CoffeeContext } from "../../context/CoffeeContext";
 
 export function Header() {
-    const { cartAmount } = useContext(CoffeeContext)
+    const { cartQuantityCount } = useContext(CoffeeContext)
     return (
         <HeaderContainer>
-            <img src={logoCoffee} alt="" />
+            <NavLink to="/" title="Home">
+                <img src={logoCoffee} alt="" />
+            </NavLink>
             <nav>
                 <HeaderLocation>
                     <MapPin size={32} weight="fill" />
@@ -19,7 +21,7 @@ export function Header() {
                 <NavLink to="/checkout" title="Checkout">
                     <CartContainer>
                         <CartCounter>
-                            <span>{cartAmount}</span>
+                            <span>{cartQuantityCount}</span>
                         </CartCounter>
                         <ShoppingCart size={32} weight="fill" />
                     </CartContainer>

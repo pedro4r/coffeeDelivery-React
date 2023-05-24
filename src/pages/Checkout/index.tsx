@@ -20,8 +20,7 @@ type NewOrderFormData = zod.infer<typeof newOrderFormValidationSchema>
 
 export function Checkout() {
 
-    const { insertAddress, paymentOption, payment, cart } = useContext(CoffeeContext)
-    // const [payment, setPayment] = useState('credit card');
+    const { insertAddress, paymentOption, payment, cart, order } = useContext(CoffeeContext)
 
     const newOrderForm = useForm<NewOrderFormData>({
         resolver: zodResolver(newOrderFormValidationSchema),
@@ -37,7 +36,8 @@ export function Checkout() {
     const { handleSubmit, watch } = newOrderForm;
 
     const watchFields = watch(['zipcode', 'address', 'complement', 'city', 'state']);
-    const isSubmitDisabled = Object.values(watchFields).some(value => !value);
+    const isSubmitDisabled = Object.values(watchFields).some(value => !value || cart.length === 0);
+
 
     function handleCreateNewOrder(data: NewOrderFormData) {
         insertAddress(data);
@@ -48,9 +48,8 @@ export function Checkout() {
     };
 
     return (
-        <form onSubmit={handleSubmit(handleCreateNewOrder)} action="">
-            <CheckoutContainer>
-
+        <CheckoutContainer>
+            <form onSubmit={handleSubmit(handleCreateNewOrder)} action="">
                 <DataContainer>
                     <strong>Complete your order</strong>
                     <AddressContainer>
@@ -62,12 +61,9 @@ export function Checkout() {
                             </div>
                         </TitleContainerShipping>
                         <FormContainer>
-
                             <FormProvider {...newOrderForm}>
                                 <NewOrderForm />
                             </FormProvider>
-                            <button disabled={isSubmitDisabled} type="submit">Confirme</button>
-
                         </FormContainer>
                     </AddressContainer>
                     <PaymentContainer>
@@ -100,7 +96,6 @@ export function Checkout() {
                         </OptionsContainer>
                     </PaymentContainer>
                 </DataContainer>
-
                 <CartDetailsContainer>
                     <strong>Selected Coffees</strong>
                     <SelectedCoffeesContainer>
@@ -110,14 +105,27 @@ export function Checkout() {
                                 id={coffee.id}
                                 quantity={coffee.quantity} />
                         ))}
+                        <OrderDetails>
+                            <div>
+                                <span>Total itens</span>
+                                <span>U$ {order.total}</span>
+                            </div>
+                            <div>
+                                <span>Delivery</span>
+                                <span>U$ {cart.length === 0 ? `0` : `3.50`}</span>
+                            </div>
+                            <div>
+                                <strong>Total</strong>
+                                <strong>U$ {cart.length === 0 ? `0` : order.total + 3.50}</strong>
+                            </div>
+                        </OrderDetails>
+                        <ConfirmeOrderButton disabled={isSubmitDisabled} type="submit">
+                            <span>CONFIRME ORDER</span>
+                        </ConfirmeOrderButton>
                     </SelectedCoffeesContainer>
 
-                    <OrderDetails></OrderDetails>
-                    <ConfirmeOrderButton></ConfirmeOrderButton>
                 </CartDetailsContainer>
-
-
-            </CheckoutContainer>
-        </form >
+            </form >
+        </CheckoutContainer >
     )
 }

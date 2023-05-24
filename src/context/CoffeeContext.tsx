@@ -10,8 +10,16 @@ interface CoffeeContextType {
     setRemoveCoffee: (id: number) => void;
     insertAddress: (address: Address) => void;
     paymentOption: (option: string) => void;
-    cartAmount: number;
+    cartQuantityCount: number;
     payment: string;
+    order: Order;
+}
+
+interface Order {
+    cart: Cart[],
+    address: Address,
+    payment: string,
+    total: number
 }
 
 export interface Coffee {
@@ -44,15 +52,11 @@ export const CoffeeContext = createContext({} as CoffeeContextType)
 
 export function CoffeeContextProvider({ children }: CoffeeContextProviderProps) {
 
-    const [order, setOrder] = useState({});
-
+    const [order, setOrder] = useState<Order>({} as Order);
     const [cart, setCart] = useState<Cart[]>([]);
-    const [cartAmount, setCartAmount] = useState(0);
-
-    const [address, setAddress] = useState({});
+    const [cartQuantityCount, setCartQuantityCount] = useState(0);
+    const [address, setAddress] = useState<Address>({} as Address);
     const [payment, setPayment] = useState('credit card');
-
-    console.log(cart);
 
     function setMoreCoffeeQuantity(id: number) {
         setCart(cart => {
@@ -112,34 +116,53 @@ export function CoffeeContextProvider({ children }: CoffeeContextProviderProps) 
     }
 
     useEffect(() => {
-        const amount = cart.reduce((acc, coffeObject) => {
+
+        const amountQuantity = cart.reduce((acc, coffeObject) => {
             return acc + coffeObject.quantity;
         }, 0);
 
-        setCartAmount(amount);
+        const orderAmount = cart.reduce((acc, cartObject) => {
+            coffeeListArray.find(coffee => {
+                if (coffee.id == cartObject.id) {
+                    const subtotal = cartObject.quantity * coffee.price
+                    return acc += subtotal
+                }
+            })
+            return acc
+        }, 0);
 
-        const newOrder = {
-            cart: cart,
-            address: address,
-            payment: payment
-        }
-        setOrder(newOrder);
+        setCartQuantityCount(amountQuantity);
 
+        setOrder((order) => {
+            const newOrder = {
+                cart: cart,
+                address: address,
+                payment: payment,
+                total: parseFloat(orderAmount.toFixed(2))
+            };
+            return { ...order, ...newOrder };
+        });
     }, [cart, payment, address])
+
+    useEffect(() => {
+        const stateJSON = JSON.stringify(order)
+        localStorage.setItem('@coffee-delivery:order-state-1.0.0', stateJSON)
+    }, [order])
 
     return (
         <CoffeeContext.Provider
             value={{
                 coffeeListArray,
                 cartAdd,
-                cartAmount,
+                cartQuantityCount,
                 insertAddress,
                 paymentOption,
                 payment,
                 cart,
                 setMoreCoffeeQuantity,
                 setLessCoffeeQuantity,
-                setRemoveCoffee
+                setRemoveCoffee,
+                order
             }}>
             {children}
         </CoffeeContext.Provider>

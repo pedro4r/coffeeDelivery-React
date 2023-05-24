@@ -23,7 +23,7 @@ export const Intro = styled.div`
 
 export const ImgContainer = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
 
     img {

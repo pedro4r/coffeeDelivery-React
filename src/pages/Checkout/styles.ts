@@ -5,10 +5,13 @@ interface ButtonProps {
 }
 
 export const CheckoutContainer = styled.div`
-    margin-top: 1rem;
-    display: grid;
-    grid-template-columns: 1fr 0.7fr;
-    gap: 2rem;
+    form {
+        margin-top: 1rem;
+        display: grid;
+        grid-template-columns: 1fr 0.7fr;
+        gap: 2rem;
+    }
+    
 `
 
 export const DataContainer = styled.div`
@@ -121,9 +124,57 @@ export const SelectedCoffeesContainer = styled.div`
 `
 
 export const OrderDetails = styled.div`  
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: space-between;
+
+        span {
+            font-size: 1rem;
+            color: ${(props) => props.theme['gray-700']};
+        }
+
+        strong {
+            font-size: 1.25rem;
+        }
+    }
 `
 
-export const ConfirmeOrderButton = styled.div` 
+export const ConfirmeOrderButton = styled.button` 
+    border: none;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 1.5rem;
+    border-radius: 6px;
+
+    width: 100%;
+    height: 2.8rem;
+
+    background: ${(props) => props.theme['yellow-200']};
+
+    span {
+        font-size: 1rem;
+        color: ${(props) => props.theme['white']};
+    }
+
+    &:disabled {
+    cursor: not-allowed;
+    background: ${(props) => props.theme['gray-500']};
+  }
+
+  &:not(:disabled):hover {
+    background: ${(props) => props.theme['yellow-300']};
+  }
+
 `
 
 
