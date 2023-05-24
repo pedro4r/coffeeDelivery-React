@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { NewOrderForm } from "./components/NewOrderForm";
 import { useContext } from "react";
 import { CoffeeContext } from "../../context/CoffeeContext";
+import { SelectedCoffee } from "./components/SelectedCoffee";
 
 const newOrderFormValidationSchema = zod.object({
     zipcode: zod.string().min(1, 'Enter the zipcode'),
@@ -19,7 +20,7 @@ type NewOrderFormData = zod.infer<typeof newOrderFormValidationSchema>
 
 export function Checkout() {
 
-    const { insertAddress, paymentOption, payment } = useContext(CoffeeContext)
+    const { insertAddress, paymentOption, payment, cart } = useContext(CoffeeContext)
     // const [payment, setPayment] = useState('credit card');
 
     const newOrderForm = useForm<NewOrderFormData>({
@@ -47,8 +48,9 @@ export function Checkout() {
     };
 
     return (
-        <CheckoutContainer>
-            <form onSubmit={handleSubmit(handleCreateNewOrder)} action="">
+        <form onSubmit={handleSubmit(handleCreateNewOrder)} action="">
+            <CheckoutContainer>
+
                 <DataContainer>
                     <strong>Complete your order</strong>
                     <AddressContainer>
@@ -98,16 +100,24 @@ export function Checkout() {
                         </OptionsContainer>
                     </PaymentContainer>
                 </DataContainer>
-            </form>
-            <CartDetailsContainer>
-                <strong>Selected Coffees</strong>
-                <SelectedCoffeesContainer>
-                </SelectedCoffeesContainer>
-                <OrderDetails></OrderDetails>
-                <ConfirmeOrderButton></ConfirmeOrderButton>
-            </CartDetailsContainer>
+
+                <CartDetailsContainer>
+                    <strong>Selected Coffees</strong>
+                    <SelectedCoffeesContainer>
+                        {cart.map((coffee) => (
+                            <SelectedCoffee
+                                key={coffee.id}
+                                id={coffee.id}
+                                quantity={coffee.quantity} />
+                        ))}
+                    </SelectedCoffeesContainer>
+
+                    <OrderDetails></OrderDetails>
+                    <ConfirmeOrderButton></ConfirmeOrderButton>
+                </CartDetailsContainer>
 
 
-        </CheckoutContainer>
+            </CheckoutContainer>
+        </form >
     )
 }

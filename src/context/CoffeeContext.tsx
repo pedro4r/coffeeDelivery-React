@@ -1,16 +1,20 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { coffeeListArray } from '../CoffeeList'
+import { coffeeListArray } from '../coffeeList'
 
 interface CoffeeContextType {
     coffeeListArray: Coffee[];
+    cart: Cart[];
     cartAdd: (cartObject: Cart) => void;
+    setMoreCoffeeQuantity: (id: number) => void;
+    setLessCoffeeQuantity: (id: number) => void;
+    setRemoveCoffee: (id: number) => void;
     insertAddress: (address: Address) => void;
     paymentOption: (option: string) => void;
     cartAmount: number;
     payment: string;
 }
 
-interface Coffee {
+export interface Coffee {
     id: number;
     name: string;
     coffeeTag: string[];
@@ -42,14 +46,44 @@ export function CoffeeContextProvider({ children }: CoffeeContextProviderProps) 
 
     const [order, setOrder] = useState({});
 
-    console.log(order);
-
     const [cart, setCart] = useState<Cart[]>([]);
     const [cartAmount, setCartAmount] = useState(0);
 
     const [address, setAddress] = useState({});
     const [payment, setPayment] = useState('credit card');
 
+    console.log(cart);
+
+    function setMoreCoffeeQuantity(id: number) {
+        setCart(cart => {
+            const cartCopy = cart.map(item => {
+                if (item.id === id) {
+                    return { ...item, quantity: item.quantity + 1 };
+                }
+                return item;
+            });
+            return cartCopy;
+        });
+    }
+
+    function setLessCoffeeQuantity(id: number) {
+        setCart(cart => {
+            const cartCopy = cart.map(item => {
+                if (item.id === id) {
+                    return { ...item, quantity: item.quantity - 1 };
+                }
+                return item;
+            });
+            return cartCopy;
+        });
+    }
+
+    function setRemoveCoffee(id: number) {
+        setCart(cart => {
+            const cartCopy = cart.filter(item => item.id !== id);
+            return cartCopy;
+        });
+    }
 
     function insertAddress(addressObject: Address) {
         setAddress(addressObject);
@@ -101,7 +135,11 @@ export function CoffeeContextProvider({ children }: CoffeeContextProviderProps) 
                 cartAmount,
                 insertAddress,
                 paymentOption,
-                payment
+                payment,
+                cart,
+                setMoreCoffeeQuantity,
+                setLessCoffeeQuantity,
+                setRemoveCoffee
             }}>
             {children}
         </CoffeeContext.Provider>

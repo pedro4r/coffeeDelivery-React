@@ -3,7 +3,6 @@ import { Coffee } from "../Coffee";
 import { useContext } from "react";
 import { CoffeeContext } from "../../../../context/CoffeeContext";
 
-
 export function CoffeeList() {
 
     const { coffeeListArray } = useContext(CoffeeContext)

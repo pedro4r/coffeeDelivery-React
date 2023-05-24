@@ -103,13 +103,21 @@ export const PaymentButton = styled.button<ButtonProps>`
     }
 `
 
-
 export const CartDetailsContainer = styled.div`
-    height: 100px;
-    background: ${(props) => props.theme['gray-200']};
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    strong {
+        margin-bottom: 1rem;
+      line-height: 1rem;
+    }
 `
 
 export const SelectedCoffeesContainer = styled.div`
+    padding: 2.5rem;
+    border-radius: 6px;
+    background: ${(props) => props.theme['gray-200']};
 `
 
 export const OrderDetails = styled.div`  
