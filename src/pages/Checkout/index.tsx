@@ -116,7 +116,7 @@ export function Checkout() {
                             </div>
                             <div>
                                 <strong>Total</strong>
-                                <strong>U$ {cart.length === 0 ? `0` : order.total + 3.50}</strong>
+                                <strong>U$ {cart.length === 0 ? `0` : parseFloat((order.total + 3.50).toFixed(2))}</strong>
                             </div>
                         </OrderDetails>
                         <ConfirmeOrderButton disabled={isSubmitDisabled} type="submit">

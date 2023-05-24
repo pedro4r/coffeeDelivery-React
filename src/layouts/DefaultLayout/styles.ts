@@ -8,6 +8,13 @@ export const LayoutContainer = styled.div`
     flex-direction: column;
     margin: 0 auto;
 `
+
 export const InputBase = styled.div`
     background: ${(props) => props.theme['gray-300']};
 `
+
+export const ZipCodeInput = styled.div`
+    background: ${(props) => props.theme['gray-300']};
+`
+
+

@@ -138,7 +138,7 @@ export function CoffeeContextProvider({ children }: CoffeeContextProviderProps) 
                 cart: cart,
                 address: address,
                 payment: payment,
-                total: parseFloat(orderAmount.toFixed(2))
+                total: orderAmount
             };
             return { ...order, ...newOrder };
         });
