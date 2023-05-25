@@ -20,26 +20,29 @@ type NewOrderFormData = zod.infer<typeof newOrderFormValidationSchema>
 
 export function Checkout() {
 
-    const { insertAddress, paymentOption, payment, cart, order } = useContext(CoffeeContext)
+    const { addressInputState, changeAddressInputState, insertAddress, paymentOption, order: { payment, cart }, orderAmount } = useContext(CoffeeContext)
+
+    const { address, complement, city, state, zipcode } = addressInputState
 
     const newOrderForm = useForm<NewOrderFormData>({
         resolver: zodResolver(newOrderFormValidationSchema),
         defaultValues: {
-            zipcode: '',
-            address: '',
-            complement: '',
-            city: '',
-            state: '',
+            zipcode: zipcode,
+            address: address,
+            complement: complement,
+            city: city,
+            state: state,
         },
     })
 
     const { handleSubmit, watch } = newOrderForm;
 
     const watchFields = watch(['zipcode', 'address', 'complement', 'city', 'state']);
-    const isSubmitDisabled = Object.values(watchFields).some(value => !value || cart.length === 0);
+    const isSubmitDisabled = Object
+        .values(watchFields)
+        .some(value => !value || (cart ?? []).length === 0);
 
-
-    function handleCreateNewOrder(data: NewOrderFormData) {
+    function handleNewAddress(data: NewOrderFormData) {
         insertAddress(data);
     }
 
@@ -47,9 +50,20 @@ export function Checkout() {
         paymentOption(option);
     };
 
+    function onChangeInputWatched() {
+        const inputFieldsWatched = {
+            zipcode: watch('zipcode'),
+            address: watch('address'),
+            complement: watch('complement'),
+            city: watch('city'),
+            state: watch('state')
+        }
+        changeAddressInputState(inputFieldsWatched)
+    }
+
     return (
         <CheckoutContainer>
-            <form onSubmit={handleSubmit(handleCreateNewOrder)} action="">
+            <form onChange={onChangeInputWatched} onSubmit={handleSubmit(handleNewAddress)} action="">
                 <DataContainer>
                     <strong>Complete your order</strong>
                     <AddressContainer>
@@ -99,7 +113,7 @@ export function Checkout() {
                 <CartDetailsContainer>
                     <strong>Selected Coffees</strong>
                     <SelectedCoffeesContainer>
-                        {cart.map((coffee) => (
+                        {(cart ?? []).map((coffee) => (
                             <SelectedCoffee
                                 key={coffee.id}
                                 id={coffee.id}
@@ -108,15 +122,15 @@ export function Checkout() {
                         <OrderDetails>
                             <div>
                                 <span>Total itens</span>
-                                <span>U$ {order.total}</span>
+                                <span>U$ {parseFloat((orderAmount).toFixed(2))}</span>
                             </div>
                             <div>
                                 <span>Delivery</span>
-                                <span>U$ {cart.length === 0 ? `0` : `3.50`}</span>
+                                <span>U$ {(cart && cart.length > 0) ? '3.50' : '0'}</span>
                             </div>
                             <div>
                                 <strong>Total</strong>
-                                <strong>U$ {cart.length === 0 ? `0` : parseFloat((order.total + 3.50).toFixed(2))}</strong>
+                                <strong>U$ {(cart && cart.length > 0) ? parseFloat((orderAmount + 3.50).toFixed(2)) : '0'}</strong>
                             </div>
                         </OrderDetails>
                         <ConfirmeOrderButton disabled={isSubmitDisabled} type="submit">

@@ -43,7 +43,7 @@ export const coffeeListArray: Coffee[] = [
     {
         id: 5,
         name: "Coffee with Milk",
-        coffeeTag: ["Traditional", "With Milk"],
+        coffeeTag: ["Traditional", "Milk"],
         description: "Half and half of traditional espresso with steamed milk",
         price: 8.99,
         image: "/src/assets/coffee-with-milk.png",
@@ -51,7 +51,7 @@ export const coffeeListArray: Coffee[] = [
     {
         id: 6,
         name: "Latte",
-        coffeeTag: ["Traditional", "With Milk"],
+        coffeeTag: ["Traditional", "Milk"],
         description: "A shot of espresso with double the amount of milk and creamy foam",
         price: 9.99,
         image: "/src/assets/latte.png",
@@ -59,7 +59,7 @@ export const coffeeListArray: Coffee[] = [
     {
         id: 7,
         name: "Capuccino",
-        coffeeTag: ["Traditional", "With Milk"],
+        coffeeTag: ["Traditional", "Milk"],
         description: "Cinnamon drink made with equal parts of coffee, milk, and foam",
         price: 9.99,
         image: "/src/assets/capuccinoo.png",
@@ -67,7 +67,7 @@ export const coffeeListArray: Coffee[] = [
     {
         id: 8,
         name: "Macchiato",
-        coffeeTag: ["Traditional", "With Milk"],
+        coffeeTag: ["Traditional", "Milk"],
         description: "Espresso mixed with a splash of hot milk and foam",
         price: 9.99,
         image: "/src/assets/macchiato.png",
@@ -75,7 +75,7 @@ export const coffeeListArray: Coffee[] = [
     {
         id: 9,
         name: "Mocaccino",
-        coffeeTag: ["Traditional", "With Milk"],
+        coffeeTag: ["Traditional", "Milk"],
         description: "Espresso with chocolate syrup, a small amount of milk, and foam",
         price: 7.99,
         image: "/src/assets/mocaccino.png",
@@ -83,7 +83,7 @@ export const coffeeListArray: Coffee[] = [
     {
         id: 10,
         name: "Hot Chocolate",
-        coffeeTag: ["Special", "With Milk"],
+        coffeeTag: ["Special", "Milk"],
         description: "A drink made with chocolate dissolved in hot milk and coffee",
         price: 3.99,
         image: "/src/assets/hot-chocolate.png",
@@ -91,7 +91,7 @@ export const coffeeListArray: Coffee[] = [
     {
         id: 11,
         name: "Cuban",
-        coffeeTag: ["Traditional", "Alcoholic", "With Milk"],
+        coffeeTag: ["Traditional", "Alcoholic", "Milk"],
         description: "Iced espresso drink with rum, cream, and mint",
         price: 12.99,
         image: "/src/assets/cuban.png",

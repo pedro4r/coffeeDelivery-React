@@ -14,7 +14,7 @@ interface CoffeeProps {
 
 export function Coffee({ id, name, coffeeTag, description, price, image }: CoffeeProps) {
 
-    const { cartAdd } = useContext(CoffeeContext)
+    const { addToCart } = useContext(CoffeeContext)
     const [coffeeQuantity, setcoffeeQuantity] = useState(1);
 
     const handleMoreCoffee = () => {
@@ -30,8 +30,7 @@ export function Coffee({ id, name, coffeeTag, description, price, image }: Coffe
             id: id,
             quantity: coffeeQuantity,
         }
-
-        cartAdd(cartObject);
+        addToCart(cartObject);
     }
 
     return (<CoffeeContainer>
