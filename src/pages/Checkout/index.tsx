@@ -20,7 +20,7 @@ type NewOrderFormData = zod.infer<typeof newOrderFormValidationSchema>
 
 export function Checkout() {
 
-    const { addressInputState, changeAddressInputState, insertAddress, paymentOption, order: { payment, cart }, orderAmount } = useContext(CoffeeContext)
+    const { addressInputState, changeAddressInputState, createOrder, paymentOption, order: { payment, cart }, orderAmount } = useContext(CoffeeContext)
 
     const { address, complement, city, state, zipcode } = addressInputState
 
@@ -43,7 +43,7 @@ export function Checkout() {
         .some(value => !value || (cart ?? []).length === 0);
 
     function handleNewAddress(data: NewOrderFormData) {
-        insertAddress(data);
+        createOrder(data);
     }
 
     const handlePaymentOption = (option: string) => {
