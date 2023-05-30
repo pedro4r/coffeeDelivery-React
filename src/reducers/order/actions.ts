@@ -1,4 +1,4 @@
-import { Address, Cart } from "./order";
+import { Address, Cart } from "./reducer";
 
 export enum ActionTypes {
     ADD_NEW_COFFEE = 'ADD_NEW_COFFEE',

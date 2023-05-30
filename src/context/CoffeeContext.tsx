@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useEffect, useReducer, useState } from "react";
 import { coffeeListArray } from '../coffeeList'
-import { Address, Cart, Coffee, Order, orderReducer } from "../reducers/order/order";
+import { Address, Cart, Coffee, Order, orderReducer } from "../reducers/order/reducer";
 import { addNewCoffee, editPayment, lessCoffeeQuantity, moreCoffeeQuantity, newOrder, removeCoffee } from "../reducers/order/actions";
 
 interface CoffeeContextType {
@@ -33,6 +33,8 @@ export function CoffeeContextProvider({ children }: CoffeeContextProviderProps) 
     };
 
     const [order, dispatch] = useReducer(orderReducer, initialOrderState);
+
+    console.log(order);
 
     const [cartQuantityCount, setCartQuantityCount] = useState(0);
     const [orderAmount, setOrderAmount] = useState(0);
