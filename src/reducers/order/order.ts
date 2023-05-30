@@ -1,3 +1,5 @@
+import { ActionTypes } from "./actions";
+
 export interface Order {
     cart: Cart[],
     address: Address,
@@ -24,15 +26,6 @@ export interface Address {
 export interface Cart {
     id: number;
     quantity: number;
-}
-
-export enum ActionTypes {
-    ADD_NEW_COFFEE = 'ADD_NEW_COFFEE',
-    REMOVE_COFFEE = 'REMOVE_COFFEE',
-    CHANGE_PAYMENT = 'CHANGE_PAYMENT',
-    SET_MORE_COFFEE = 'SET_MORE_COFFEE',
-    SET_LESS_COFFEE = 'SET_LESS_COFFEE',
-    CREATE_NEW_ORDER = 'CREATE_NEW_ORDER'
 }
 
 export function orderReducer(state: Order, action: any) {

@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useEffect, useReducer, useState } from "react";
 import { coffeeListArray } from '../coffeeList'
-import { ActionTypes, Address, Cart, Coffee, Order, orderReducer } from "../reducers/order";
+import { Address, Cart, Coffee, Order, orderReducer } from "../reducers/order/order";
+import { addNewCoffee, editPayment, lessCoffeeQuantity, moreCoffeeQuantity, newOrder, removeCoffee } from "../reducers/order/actions";
 
 interface CoffeeContextType {
     coffeeListArray: Coffee[];
@@ -41,59 +42,28 @@ export function CoffeeContextProvider({ children }: CoffeeContextProviderProps) 
         setAddressInputState(addressObject);
     }
 
-    function setMoreCoffeeQuantity(id: number) {
+    function addToCart(cartObject: Cart) {
+        dispatch(addNewCoffee(cartObject));
+    }
 
-        dispatch({
-            type: ActionTypes.SET_MORE_COFFEE,
-            payload: {
-                id,
-            }
-        });
+    function setMoreCoffeeQuantity(id: number) {
+        dispatch(moreCoffeeQuantity(id));
     }
 
     function setLessCoffeeQuantity(id: number) {
-        dispatch({
-            type: ActionTypes.SET_LESS_COFFEE,
-            payload: {
-                id,
-            }
-        });
+        dispatch(lessCoffeeQuantity(id));
     }
 
     function setRemoveCoffee(id: number) {
-        dispatch({
-            type: ActionTypes.REMOVE_COFFEE,
-            payload: {
-                id,
-            }
-        });
+        dispatch(removeCoffee(id));
     }
 
     function createOrder(addressObject: Address) {
-        dispatch({
-            type: ActionTypes.CREATE_NEW_ORDER,
-            payload: {
-                addressObject,
-            }
-        });
+        dispatch(newOrder(addressObject));
     }
 
     function paymentOption(option: string) {
-        dispatch({
-            type: ActionTypes.CHANGE_PAYMENT,
-            payload: {
-                option,
-            }
-        });
-    }
-
-    function addToCart(cartObject: Cart) {
-        dispatch({
-            type: ActionTypes.ADD_NEW_COFFEE,
-            payload: {
-                cartObject,
-            }
-        });
+        dispatch(editPayment(option));
     }
 
     useEffect(() => {
