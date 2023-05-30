@@ -32,7 +32,18 @@ export function CoffeeContextProvider({ children }: CoffeeContextProviderProps) 
         payment: "credit card"
     };
 
-    const [order, dispatch] = useReducer(orderReducer, initialOrderState);
+    const [order, dispatch] = useReducer(orderReducer,
+        initialOrderState,
+        (initialOrderState) => {
+            const storedStateAsJSON = localStorage.getItem('@coffee-delivery:order-state-1.0.0');
+
+            if (storedStateAsJSON) {
+                return JSON.parse(storedStateAsJSON);
+            }
+
+            return initialOrderState
+
+        });
 
     console.log(order);
 
