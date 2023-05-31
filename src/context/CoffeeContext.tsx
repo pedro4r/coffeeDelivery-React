@@ -45,8 +45,8 @@ export function CoffeeContextProvider({ children }: CoffeeContextProviderProps) 
 
         });
 
-    const [cartQuantityCount, setCartQuantityCount] = useState(0);
-    const [orderAmount, setOrderAmount] = useState(0);
+    console.log(order);
+
     const [addressInputState, setAddressInputState] = useState<Address>({} as Address);
 
     function changeAddressInputState(addressObject: Address) {
@@ -77,27 +77,19 @@ export function CoffeeContextProvider({ children }: CoffeeContextProviderProps) 
         dispatch(editPayment(option));
     }
 
-    useEffect(() => {
+    const cartQuantityCount = (order.cart ?? []).reduce((acc, coffeObject) => {
+        return acc + coffeObject.quantity;
+    }, 0);
 
-        const amountQuantity = (order.cart ?? []).reduce((acc, coffeObject) => {
-            return acc + coffeObject.quantity;
-        }, 0);
-
-        setCartQuantityCount(amountQuantity);
-
-        const orderAmount = (order.cart ?? []).reduce((acc, cartObject) => {
-            coffeeListArray.find(coffee => {
-                if (coffee.id === cartObject.id) {
-                    const subtotal = cartObject.quantity * coffee.price
-                    return acc += subtotal
-                }
-            })
-            return acc
-        }, 0);
-
-        setOrderAmount(orderAmount);
-
-    }, [order])
+    const orderAmount = (order.cart ?? []).reduce((acc, cartObject) => {
+        coffeeListArray.find(coffee => {
+            if (coffee.id === cartObject.id) {
+                const subtotal = cartObject.quantity * coffee.price
+                return acc += subtotal
+            }
+        })
+        return acc
+    }, 0);
 
     useEffect(() => {
         const stateJSON = JSON.stringify(order)
