@@ -1,4 +1,18 @@
 import { styled } from "styled-components";
+import background from '../../assets/background.png';
+
+export const Background = styled.div`
+    position: absolute;
+    top: 7rem;
+    left: 0;
+    width: 100%;
+    height: 34rem;
+    z-index: -1;
+
+    background-image: url(${background});
+    background-size: cover;
+    background-position: center;
+`;
 
 export const Main = styled.div`
     display: grid;

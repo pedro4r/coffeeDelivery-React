@@ -33,15 +33,15 @@ export function SelectedCoffee({ id, quantity }: Cart) {
                     <span>{coffeeSelected.name}</span>
                     <Purchase>
                         <QuantityContainer>
-                            <AddRemoveButton disabled={quantity === 1} onClick={handleLessCoffee}>
+                            <AddRemoveButton type='button' disabled={quantity === 1} onClick={handleLessCoffee}>
                                 <Minus size={14} weight="bold" />
                             </AddRemoveButton>
                             <span>{quantity}</span>
-                            <AddRemoveButton onClick={handleMoreCoffee}>
+                            <AddRemoveButton type='button' onClick={handleMoreCoffee}>
                                 <Plus size={14} weight="bold" />
                             </AddRemoveButton>
                         </QuantityContainer>
-                        <RemoveButton onClick={handleRemoveCoffee}>
+                        <RemoveButton type='button' onClick={handleRemoveCoffee}>
                             <Trash size={16} />
                             <span>REMOVE</span>
                         </RemoveButton>

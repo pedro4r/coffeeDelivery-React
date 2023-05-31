@@ -29,7 +29,7 @@ export function CoffeeContextProvider({ children }: CoffeeContextProviderProps) 
     const initialOrderState: Order = {
         cart: [],
         address: {} as Address,
-        payment: "credit card"
+        payment: "Credit Card"
     };
 
     const [order, dispatch] = useReducer(orderReducer,
@@ -44,8 +44,6 @@ export function CoffeeContextProvider({ children }: CoffeeContextProviderProps) 
             return initialOrderState
 
         });
-
-    console.log(order);
 
     const [cartQuantityCount, setCartQuantityCount] = useState(0);
     const [orderAmount, setOrderAmount] = useState(0);

@@ -100,7 +100,6 @@ export function orderReducer(state: Order, action: any) {
         }
 
         case ActionTypes.CREATE_NEW_ORDER: {
-
             return produce(state, draft => {
                 const addressObject = action.payload.addressObject;
                 draft.address = addressObject;

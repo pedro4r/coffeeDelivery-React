@@ -7,6 +7,7 @@ import { NewOrderForm } from "./components/NewOrderForm";
 import { useContext } from "react";
 import { CoffeeContext } from "../../context/CoffeeContext";
 import { SelectedCoffee } from "./components/SelectedCoffee";
+import { useNavigate } from "react-router-dom";
 
 const newOrderFormValidationSchema = zod.object({
     zipcode: zod.string().min(1, 'Enter the zipcode'),
@@ -42,8 +43,11 @@ export function Checkout() {
         .values(watchFields)
         .some(value => !value || (cart ?? []).length === 0);
 
+    const navigate = useNavigate();
+
     function handleNewAddress(data: NewOrderFormData) {
         createOrder(data);
+        navigate('/success');
     }
 
     const handlePaymentOption = (option: string) => {
@@ -89,21 +93,21 @@ export function Checkout() {
                             </div>
                         </TitleContainerPayment>
                         <OptionsContainer>
-                            <PaymentButton
-                                selected={payment === 'credit card'}
-                                onClick={() => handlePaymentOption('credit card')}>
+                            <PaymentButton type='button'
+                                selected={payment === 'Credit Card'}
+                                onClick={() => handlePaymentOption('Credit Card')}>
                                 <CreditCard size={16} />
                                 <span>CREDIT CARD</span>
                             </PaymentButton>
-                            <PaymentButton
-                                selected={payment === 'debit card'}
-                                onClick={() => handlePaymentOption('debit card')}>
+                            <PaymentButton type='button'
+                                selected={payment === 'Debit Card'}
+                                onClick={() => handlePaymentOption('Debit Card')}>
                                 <Bank size={16} />
                                 <span>DEBIT CARD</span>
                             </PaymentButton>
-                            <PaymentButton
-                                selected={payment === 'cash'}
-                                onClick={() => handlePaymentOption('cash')}>
+                            <PaymentButton type='button'
+                                selected={payment === 'Cash'}
+                                onClick={() => handlePaymentOption('Cash')}>
                                 <Money size={16} />
                                 <span>CASH</span>
                             </PaymentButton>
