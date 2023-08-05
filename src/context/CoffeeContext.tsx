@@ -45,8 +45,6 @@ export function CoffeeContextProvider({ children }: CoffeeContextProviderProps) 
 
         });
 
-    console.log(order);
-
     const [addressInputState, setAddressInputState] = useState<Address>({} as Address);
 
     function changeAddressInputState(addressObject: Address) {

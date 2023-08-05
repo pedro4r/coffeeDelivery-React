@@ -34,7 +34,7 @@ export function Coffee({ id, name, coffeeTag, description, price, image }: Coffe
     }
 
     return (<CoffeeContainer>
-        <img src={`${image}`} alt="" />
+        <img src={`./${image}`} />
         <CoffeeTagContainer>
             {coffeeTag.map(tag => (
                 <CoffeeTag key={tag}>

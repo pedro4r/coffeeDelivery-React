@@ -14,7 +14,7 @@ export const coffeeListArray: Coffee[] = [
         coffeeTag: ["Traditional"],
         description: "The traditional coffee made with hot water and ground beans",
         price: 5.99,
-        image: "/src/assets/traditional-espresso.png",
+        image: "traditional-espresso.png",
     },
     {
         id: 2,
@@ -22,7 +22,7 @@ export const coffeeListArray: Coffee[] = [
         coffeeTag: ["Traditional"],
         description: "Diluted espresso, less intense than traditional",
         price: 4.99,
-        image: "/src/assets/americano-espresso.png",
+        image: "americano-espresso.png",
     },
     {
         id: 3,
@@ -30,7 +30,7 @@ export const coffeeListArray: Coffee[] = [
         coffeeTag: ["Traditional"],
         description: "Traditional espresso with creamy foam",
         price: 7.99,
-        image: "/src/assets/creamy-espresso.png",
+        image: "creamy-espresso.png",
     },
     {
         id: 4,
@@ -38,7 +38,7 @@ export const coffeeListArray: Coffee[] = [
         coffeeTag: ["Traditional", "Iced"],
         description: "Drink made with espresso and ice cubes",
         price: 6.99,
-        image: "/src/assets/iced-espresso.png",
+        image: "iced-espresso.png",
     },
     {
         id: 5,
@@ -46,7 +46,7 @@ export const coffeeListArray: Coffee[] = [
         coffeeTag: ["Traditional", "Milk"],
         description: "Half and half of traditional espresso with steamed milk",
         price: 8.99,
-        image: "/src/assets/coffee-with-milk.png",
+        image: "coffee-with-milk.png",
     },
     {
         id: 6,
@@ -54,7 +54,7 @@ export const coffeeListArray: Coffee[] = [
         coffeeTag: ["Traditional", "Milk"],
         description: "A shot of espresso with double the amount of milk and creamy foam",
         price: 9.99,
-        image: "/src/assets/latte.png",
+        image: "latte.png",
     },
     {
         id: 7,
@@ -62,7 +62,7 @@ export const coffeeListArray: Coffee[] = [
         coffeeTag: ["Traditional", "Milk"],
         description: "Cinnamon drink made with equal parts of coffee, milk, and foam",
         price: 9.99,
-        image: "/src/assets/capuccinoo.png",
+        image: "capuccinoo.png",
     },
     {
         id: 8,
@@ -70,7 +70,7 @@ export const coffeeListArray: Coffee[] = [
         coffeeTag: ["Traditional", "Milk"],
         description: "Espresso mixed with a splash of hot milk and foam",
         price: 9.99,
-        image: "/src/assets/macchiato.png",
+        image: "macchiato.png",
     },
     {
         id: 9,
@@ -78,7 +78,7 @@ export const coffeeListArray: Coffee[] = [
         coffeeTag: ["Traditional", "Milk"],
         description: "Espresso with chocolate syrup, a small amount of milk, and foam",
         price: 7.99,
-        image: "/src/assets/mocaccino.png",
+        image: "mocaccino.png",
     },
     {
         id: 10,
@@ -86,7 +86,7 @@ export const coffeeListArray: Coffee[] = [
         coffeeTag: ["Special", "Milk"],
         description: "A drink made with chocolate dissolved in hot milk and coffee",
         price: 3.99,
-        image: "/src/assets/hot-chocolate.png",
+        image: "hot-chocolate.png",
     },
     {
         id: 11,
@@ -94,7 +94,7 @@ export const coffeeListArray: Coffee[] = [
         coffeeTag: ["Traditional", "Alcoholic", "Milk"],
         description: "Iced espresso drink with rum, cream, and mint",
         price: 12.99,
-        image: "/src/assets/cuban.png",
+        image: "cuban.png",
     },
     {
         id: 12,
@@ -102,7 +102,7 @@ export const coffeeListArray: Coffee[] = [
         coffeeTag: ["Special"],
         description: "Sweetened beverage prepared with coffee and coconut milk",
         price: 5.99,
-        image: "/src/assets/hawaiian.png",
+        image: "hawaiian.png",
     },
     {
         id: 13,
@@ -110,7 +110,7 @@ export const coffeeListArray: Coffee[] = [
         coffeeTag: ["Special"],
         description: "Beverage prepared with Arabic coffee beans and spices",
         price: 5.99,
-        image: "/src/assets/arabic.png",
+        image: "arabic.png",
     },
     {
         id: 14,
@@ -118,6 +118,6 @@ export const coffeeListArray: Coffee[] = [
         coffeeTag: ["Special", "Alcoholic"],
         description: "Beverage made with coffee, Irish whiskey, sugar, and whipped cream",
         price: 8.99,
-        image: "/src/assets/irish.png",
+        image: "irish.png",
     },
 ];
