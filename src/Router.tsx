@@ -7,7 +7,7 @@ import { Success } from "./pages/Success";
 export function Router() {
     return (
         <Routes>
-            <Route path="/" element={<DefaultLayout />}>
+            <Route path="/coffeeDelivery-React/" element={<DefaultLayout />}>
                 <Route path="/coffeeDelivery-React/" element={<Home />} />
                 <Route path="/coffeeDelivery-React/checkout" element={<Checkout />} />
                 <Route path="/coffeeDelivery-React/success" element={<Success />} />
